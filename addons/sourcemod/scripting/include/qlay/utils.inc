@@ -34,18 +34,18 @@ methodmap Utils < StringMap {
         delete file;
     }
 
-    public static JSON_OBJECT ReadMapConfig(char[] mapname, char[] filename)
+    public static JSON_OBJECT ReadMapConfig(char[] folder = "default", char[] mapname, char[] filename)
     {
         char path[256];
-        Format(path, sizeof(path),"configs/scp/%s/%s.json", mapname, filename);
+        Format(path, sizeof(path),"configs/%s/%s/%s.json", folder, mapname, filename);
         return Utils.JSONRead(path);
     }
 
-    public static JSON_OBJECT ReadCurMapConfig(char[] filename)
+    public static JSON_OBJECT ReadCurMapConfig(char[] folder = "default", char[] filename)
     {
         char mapname[128];
         GetCurrentMap(mapname, sizeof(mapname));
-        return Utils.ReadMapConfig(mapname, filename);
+        return Utils.ReadMapConfig(folder, mapname, filename);
     }
 
     public static void TransformPath(char[] metapath, char[] outpath, char[] lang = "en", char[] name = "")
